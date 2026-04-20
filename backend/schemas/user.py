@@ -4,8 +4,8 @@ from pydantic import BaseModel, EmailStr, Field
 #properties required during user creation
 class UserCreate(BaseModel):
     email : EmailStr
-    # Password must be at least 4 characters long
-    password : str = Field(..., min_length=4)
+    # Password must be at least 4 characters and max 72 (bcrypt limit)
+    password : str = Field(..., min_length=4, max_length=72)
 
 class ShowUser(BaseModel):
     id: int
